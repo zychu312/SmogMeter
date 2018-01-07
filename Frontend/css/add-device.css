@@ -1,0 +1,31 @@
+.resize-control {
+    color: lightgray;
+    transition: color linear 0.5s;
+    cursor: pointer;
+}
+
+.resize-control:hover {
+    color:#3C3D48;
+}
+
+.add-device_cell {
+    fill: lightgray;
+    stroke:#3C3D48;
+    stroke-width: 0.005;
+    transition:  fill linear 0.5s;
+}
+
+.add-device_cell:hover {
+    fill: rgb(194, 194, 194)
+}
+
+.add-device_cell--selected {
+    fill: lightsteelblue;
+    stroke: #3C3D48;
+    stroke-width: 0.005;
+    transition: fill linear 0.5s;
+}
+
+.add-device_cell--selected:hover {
+    fill: rgb(141, 168, 201);
+}

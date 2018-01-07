@@ -1,0 +1,19 @@
+text {
+    cursor: pointer;
+}
+
+body {
+    user-select: none !important;
+}
+
+.icon--back {
+    width: 100%;
+    text-align: center;
+}
+.icon--back:hover {
+    color: #0097A7;
+}
+
+#gauge text {
+    fill: #333333;
+}

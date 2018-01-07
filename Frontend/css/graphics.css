@@ -1,0 +1,61 @@
+.shape--free-space {
+    fill: #e4ebf0 !important;
+    cursor: default !important;
+}
+
+.shape--free-space:hover {
+    fill: #e4ebf0 !important;
+}
+
+.shape {
+    fill: #d6e4ee;
+    transition: fill 0.5s;
+    cursor: pointer;
+    stroke:#000000;
+    stroke-width:1.5;
+    stroke-opacity:1; 
+}
+
+.shape:hover {
+    fill: #aabac5;
+}
+
+.shape--selected {
+    fill: #bccdd8;
+}
+
+.shape--selected:hover {
+    fill: #9fb2be;
+}
+
+.arrow {
+    fill : none;
+    stroke : rgb(60, 61, 72);
+    stroke-width :3;
+    transition: stroke-width 250ms linear;
+}
+
+.arrow:hover {
+    stroke-width: 5;
+    stroke : rgb(83, 84, 99);
+}
+
+.cell {
+    stroke: #3C3D48;
+    stroke-width: 0.05;
+    fill: transparent; 
+    fill-opacity: 0.7
+}
+
+.cell__route, .cell__route:hover {
+    fill: rgb(194, 194, 194) !important;
+    fill-opacity: 0.5 !important;
+}
+
+.cell:hover {
+    fill-opacity:1
+}
+
+.cell__edit-routes:hover {
+    fill:grey !important;
+}
