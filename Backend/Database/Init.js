@@ -1,4 +1,5 @@
-const url = 'mongodb://192.168.0.14:27017';
+const url = 'mongodb://localhost:27017/mydb';
+
 const mongoClient = require('mongodb').MongoClient;
 
 exports.init = async () => {

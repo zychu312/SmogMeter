@@ -25,24 +25,8 @@ const loggerMiddleware = createLogger({
     duration: true
 });
 
-import devices from '../Devices/reducers';
-import buildingChooser from '../BuildingChooser/reducers';
-import hallChooser from '../HallChooser/reducers';
-import hallPlanView from '../HallPlanView/reducers';
-import levelSelector from '../LevelSelector/reducers';
-import index from '../Index/reducers';
-import authorization from '../Authorization/reducers';
 
-const combinedReducers = combineReducers(
-    {
-        devices,
-        buildingChooser,
-        hallChooser,
-        hallPlanView,
-        levelSelector,
-        index,
-        authorization
-    });
+const combinedReducers = combineReducers({});
 
 const combinedMiddlewares = applyMiddleware(thunkMiddleware, loggerMiddleware);
 

@@ -5,9 +5,10 @@ const AmCharts = require('@amcharts/amcharts3-react');
 const configBase = {
     'type': 'serial',
     'theme': 'light',
-    'marginRight': 80,
+    'autoMargin' : true,
+    'marginRight': 10,
     'autoMarginOffset': 20,
-    'marginTop': 7,
+    'marginTop': 50,
     'dataProvider': null,
     'minSelectedTime': 0,
     'valueAxes': [{
@@ -25,6 +26,8 @@ const configBase = {
         'hideBulletsCount': 50,
         'title': 'red line',
         'valueField': 'pm25',
+        'type': 'smoothedLine',
+        'fillAlphas': 0.1,
         'useLineColorForBulletBorder': true,
         'balloon': {
             'drop': true
@@ -37,18 +40,20 @@ const configBase = {
         'bulletColor': '#FFFFFF',
         'hideBulletsCount': 50,
         'title': 'red line',
+        'fillAlphas': 0.1,
         'valueField': 'pm10',
+        'type': 'smoothedLine',
         'useLineColorForBulletBorder': true,
         'balloon': {
             'drop': true
         }
     }
     ],
-    'chartScrollbar': {
-        'autoGridCount': true,
-        'graph': 'g1',
-        'scrollbarHeight': 40
-    },
+    // 'chartScrollbar': {
+    //     'autoGridCount': true,
+    //     'graph': 'g1',
+    //     'scrollbarHeight': 40
+    // },
     'chartCursor': {
         'limitToGraph': 'g1'
     },
@@ -73,20 +78,22 @@ export default class TimeSeries extends React.Component {
             records: []
         };
 
-        fetch('/records')
-            .then(data => data.json())
-            .then(records => this.formatRecords(records))
-            .then(records => this.setState({ records }))
-            .catch(err => console.log(`Err while fetching records ${err}`));
-    }
+        const ws = new WebSocket(`ws://${window.location.hostname}:8080`);
 
-    formatRecords = records => new Promise(
-        resolve => resolve(records
-            .map(({ pm10, pm25, date }) => ({ pm10: pm10.toFixed(0), pm25: pm25.toFixed(0), date }))));
+        ws.onmessage = msg => {
+            const data = JSON.parse(msg.data);
+            const withAddedRecord = [...this.state.records,
+                { pm25: data.pm25.toFixed(0), pm10: data.pm10.toFixed(0), date: data.date }];
+
+            const last1000 = withAddedRecord.filter((val, index, array) => array.length > 1000 && index == 0 ? false : true);
+
+            this.setState({ records: last1000 });
+        };
+    }
 
     render() {
         const config = { ...configBase, dataProvider: this.state.records };
-        return <AmCharts.React style={{ height: '100vh' }} options={config} />;
+        return <AmCharts.React style={{ height: 'auto', width:'100vw' }} options={config} />;
 
     }
 

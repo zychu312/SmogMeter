@@ -17,3 +17,15 @@ body {
 #gauge text {
     fill: #333333;
 }
+
+.menu__item:hover {
+    background-color: #00ACC1;
+}
+
+.menu__item {
+    cursor: pointer;
+}
+
+.menu__item--selected {
+    background-color: #0097A7;
+}
